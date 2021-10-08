@@ -1,0 +1,49 @@
+body {
+  --accent-1: #5a5a5a;
+  --color: #000000;
+  --accent-2: #989898;
+  --accent-3: rgba(0, 0, 0, 0.5);
+  --accent-4: rgba(0, 0, 0, 0.25);
+  --border: rgba(0, 0, 0, 0.1);
+  --primary-1: #7500bd;
+  --primary-2: #ac24ff;
+  --green: #27b524;
+  --red: #b52424;
+  --score-green: #57da9b;
+  --score-orange: #ffc061;
+  --score-red: #ff6161;
+  --background: #f8fafc;
+  --background-btn: #e5e5e5;
+  --background-input: #f1f1f1;
+  --background-header: #ffffff;
+  --background-block: #ffffff;
+  --background-block-shadow: rgba(36, 0, 255, 0.1);
+  --background-footer: rgba(172, 36, 255, 0.1);
+  --shadow-scroll-left: linear-gradient(270deg, rgba(248, 250, 252, 0) 0%, #f8fafc 100%);
+  --shadow-scroll-right: linear-gradient(270deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+}
+
+body.dark {
+  --color: #ffffff;
+  --accent-1: #dadada;
+  --accent-2: #9c9c9c;
+  --accent-3: rgba(255, 255, 255, 0.5);
+  --accent-4: #969696;
+  --border: rgba(255, 255, 255, 0.1);
+  --primary-1: #ac24ff;
+  --primary-2: #ac24ff;
+  --green: #27b524;
+  --red: #b52424;
+  --score-green: #57da9b;
+  --score-orange: #ffc061;
+  --score-red: #ff6161;
+  --background: #151515;
+  --background-btn: #3c3c3c;
+  --background-input: #3c3c3c;
+  --background-header: #0e0e0e;
+  --background-block: #0e0e0e;
+  --background-block-shadow: rgba(255, 255, 255, 0.1);
+  --background-footer: #212121;
+  --shadow-scroll-right: linear-gradient(270deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+  --shadow-scroll-left: linear-gradient(270deg, rgba(21, 21, 21, 0), #151515 100%);
+}

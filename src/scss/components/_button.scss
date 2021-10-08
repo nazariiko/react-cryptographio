@@ -1,0 +1,78 @@
+.option-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  height: 35px;
+  background: var(--background-btn);
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--accent-1);
+  margin-right: 20px;
+
+  img {
+    margin-right: 5px;
+  }
+}
+
+.category-btn {
+  height: 35px;
+  padding: 0 20px;
+  border: 1px solid var(--accent-4);
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--accent-1);
+  margin-right: 20px;
+
+  &__active {
+    border-color: var(--primary-1);
+    color: var(--primary-1);
+  }
+}
+
+.category-option-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 35px;
+  border: 1px solid var(--primary-1);
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--primary-1);
+  margin-right: 20px;
+
+  img {
+    margin-right: 5px;
+  }
+}
+
+.cryptocurrencies-buttons-block {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+
+  .left-options {
+    display: flex;
+    border-right: 1px solid var(--border);
+  }
+
+  .categories-btns-desktop {
+    display: flex;
+  }
+
+  .filters {
+    display: flex;
+    margin-left: auto;
+    position: relative;
+  }
+}

@@ -1,0 +1,1 @@
+export { default as ExchangesTable } from './ExchangesTable'

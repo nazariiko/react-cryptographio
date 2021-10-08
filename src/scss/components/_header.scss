@@ -1,0 +1,105 @@
+.header {
+  background: var(--background-header);
+  height: 100px;
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25);
+
+  .container {
+    height: inherit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo-block {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      margin-right: 15px;
+    }
+
+    span {
+      font-family: Ubuntu;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 37px;
+      color: var(--color);
+
+      span {
+        color: var(--primary-2);
+      }
+    }
+  }
+
+  &-menu {
+    ul {
+      display: flex;
+
+      a {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: var(--color);
+        margin-right: 30px;
+        cursor: pointer;
+      }
+
+      li:last-child {
+        margin: 0;
+      }
+
+      li.active {
+        color: var(--primary-1);
+      }
+    }
+  }
+
+  &-right-block {
+    display: flex;
+    align-items: center;
+
+    .header-search-block {
+      input {
+        width: 225px;
+        height: 35px;
+        background: var(--background-input);
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: var(--color);
+        padding-left: 40px;
+        border-radius: 7px;
+
+        &::placeholder {
+          color: var(--accent-2);
+        }
+      }
+
+      img {
+        position: relative;
+        left: 30px;
+        top: 2px;
+        cursor: pointer;
+      }
+
+      svg {
+        position: relative;
+        right: 20px;
+        cursor: pointer;
+      }
+    }
+
+    button {
+      margin-left: 15px;
+    }
+  }
+}
+
+.burger-menu {
+  &__btn > img {
+    position: relative;
+    top: 5px;
+  }
+}

@@ -1,0 +1,71 @@
+.footer {
+  margin-top: auto;
+  height: 200px;
+  background: var(--background-footer);
+
+  & .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    img {
+      margin-right: 20px;
+    }
+
+    span {
+      font-family: Ubuntu;
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 48px;
+      color: var(--color);
+
+      span {
+        color: var(--primary-2);
+      }
+    }
+  }
+
+  .footer-info-developer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+
+    p {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      text-decoration-line: underline;
+      color: var(--color);
+      margin-right: 25px;
+    }
+  }
+
+  .developer-social-networks {
+    display: flex;
+
+    li {
+      margin-right: 10px;
+
+      svg {
+        path {
+          fill: var(--color);
+        }
+      }
+    }
+  }
+
+  .all-rights-reserved {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--primary-1);
+  }
+}
