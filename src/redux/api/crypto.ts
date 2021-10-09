@@ -9,9 +9,10 @@ export const cryptoApi = createApi({
   endpoints: (builder) => ({
     getCryptocurrencies: builder.query({
       query: (perPage) => ({
-        method: 'GET',
-        mode: 'no-cors',
         url: `${URL}currencies/ticker?key=${API_KEY}&page=1&per-page=${perPage}&interval=1d,7d`,
+        header: {
+          'Access-Control-Allow-Origin': '*',
+        },
       }),
     }),
   }),
