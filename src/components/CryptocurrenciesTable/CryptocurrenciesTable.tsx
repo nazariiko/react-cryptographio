@@ -8,7 +8,6 @@ import { useAppSelector } from '../../app/hooks';
 import { usePrevious } from '../../hooks/usePrevious';
 
 import { useGetCryptocurrenciesQuery } from '../../redux/api/crypto';
-import { isError } from 'util';
 
 function CryptocurrenciesTable() {
   const { data, isLoading, isError, isSuccess } = useGetCryptocurrenciesQuery(100, {
