@@ -40,11 +40,21 @@
   }
 }
 
+.crypto-table-wrapper-loading {
+  svg {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.td-crypto-name-loading {
+  position: auto !important;
+}
+
 .crypto-table {
-  position: relative;
   min-width: 1100px !important;
   margin: 0;
   border: none;
+  position: relative;
   border-collapse: collapse;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);

@@ -21,6 +21,8 @@ body {
   --background-footer: rgba(172, 36, 255, 0.1);
   --shadow-scroll-left: linear-gradient(270deg, rgba(248, 250, 252, 0) 0%, #f8fafc 100%);
   --shadow-scroll-right: linear-gradient(270deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+  --loader-foreground: #d6d6d6;
+  --loader-background: #ededed;
 }
 
 body.dark {
@@ -46,4 +48,6 @@ body.dark {
   --background-footer: #212121;
   --shadow-scroll-right: linear-gradient(270deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
   --shadow-scroll-left: linear-gradient(270deg, rgba(21, 21, 21, 0), #151515 100%);
+  --loader-foreground: #272727;
+  --loader-background: #1d1d1d;
 }

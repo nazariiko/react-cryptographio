@@ -2,14 +2,16 @@ import React from 'react';
 
 import CryptocurrenciesItem from './CryptocurrenciesItem';
 import infoIcon from '../../icons/info.svg';
+import LoaderBlock from '../Loaders/LoaderBlock';
 
 import { useAppSelector } from '../../app/hooks';
 import { usePrevious } from '../../hooks/usePrevious';
 
 import { useGetCryptocurrenciesQuery } from '../../redux/api/crypto';
+import { isError } from 'util';
 
 function CryptocurrenciesTable() {
-  const { data } = useGetCryptocurrenciesQuery(100, {
+  const { data, isLoading, isError, isSuccess } = useGetCryptocurrenciesQuery(100, {
     pollingInterval: 15000,
   });
   const prevData = usePrevious(data);
@@ -41,8 +43,8 @@ function CryptocurrenciesTable() {
 
   React.useEffect(() => {
     function handleResize() {
-      if (window.innerWidth < 700) {
-        tableRef.current!.scrollLeft = tableRef.current!.scrollLeft + 73;
+      if (window.innerWidth < 700 && isSuccess) {
+        tableRef.current!.scrollLeft = tableRef.current!.scrollLeft + 85;
         window.removeEventListener('resize', handleResize);
       }
     }
@@ -51,7 +53,77 @@ function CryptocurrenciesTable() {
       handleResize();
     }, 500);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isSuccess]);
+
+  if (isLoading || isError) {
+    return (
+      <div ref={tableRef} className="crypto-table-wrapper crypto-table-wrapper-loading">
+        <table className="crypto-table crypto-table-loading">
+          <thead>
+            <tr>
+              <th className="th-crypto-numbering">
+                <p>#</p>
+              </th>
+              <th className="td-crypto-name-loading th-crypto-name">
+                <p>Name</p>
+              </th>
+              <th>
+                <p>Price</p>
+              </th>
+              <th>
+                <p>24h%</p>
+              </th>
+              <th>
+                <p>7d%</p>
+              </th>
+              <th>
+                <div className="th-with-info">
+                  <img className="info" src={infoIcon} alt="info" />
+                  <div className="th-info-block">
+                    <p>
+                      The total market value of a cryptocurrency's circulating supply. It is
+                      analogous to the free-float capitalization in the stock market. <br />
+                      <br />
+                      Market Cap = Current Price x Circulating Supply.
+                    </p>
+                  </div>
+                  <p>Market cap</p>
+                </div>
+              </th>
+              <th>
+                <div className="th-with-info">
+                  <img className="info" src={infoIcon} alt="info" />
+                  <div className="th-info-block">
+                    <p>
+                      A measure of how much of a cryptocurrency was traded in the last 24 hours.
+                    </p>
+                  </div>
+                  <p>Volume(24h)</p>
+                </div>
+              </th>
+              <th>
+                <div className="th-with-info">
+                  <img className="info" src={infoIcon} alt="info" />
+                  <div className="th-info-block">
+                    <p>
+                      The amount of coins that are circulating in the market and are in public
+                      hands. It is analogous to the flowing shares in the stock market.
+                    </p>
+                  </div>
+                  <p>Circulation Supply</p>
+                </div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+        {Array(10)
+          .fill(0)
+          .map((_, index) => (
+            <LoaderBlock key={index} />
+          ))}
+      </div>
+    );
+  }
 
   return (
     <div ref={tableRef} className="crypto-table-wrapper">
@@ -128,8 +200,6 @@ function CryptocurrenciesTable() {
                   return true;
                 }
                 let parsed = JSON.parse(cryptoWatchlist ? cryptoWatchlist : '[]');
-                console.log(parsed);
-
                 return parsed.includes(item.id);
               })
               .sort(sortCryptocurrencies)
