@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { OptionButton, CategoryButton, CategoryOptionButton } from '../../components/Button';
+import { OptionButton, CategoryButton } from '../../components/Button';
 import { SortPopup } from '../../components/SortPopup';
-import { CategoryPopup } from '../../components/CategoryPopup';
 import { FiltersPopup } from '../../components/FiltersPopup';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -11,14 +10,12 @@ import { setWatchlistFilter } from '../../redux/filter/filterSlice';
 import watchlistIcon from '../../icons/watchlist.svg';
 import watchlistIconActive from '../../icons/star-filled.svg';
 import sortByIcon from '../../icons/sortby.svg';
-import sortByPrimaryIcon from '../../icons/sortby-primary.svg';
 import filtersByIcon from '../../icons/filters.svg';
 
 function CryptoButtonsBlock() {
   const dispatch = useAppDispatch();
   const filterByWatchlist = useAppSelector((state) => state.filter.filterByWatchlist);
   const [filtersPopupVisibility, setFiltersPopupVisibility] = React.useState(false);
-  const [categoryPopupVisibility, setCategoryPopupVisibility] = React.useState(false);
   const [sortPopupVisibility, setSortPopupVisibility] = React.useState(false);
   const onClick1 = () => {};
 
@@ -38,14 +35,6 @@ function CryptoButtonsBlock() {
     setSortPopupVisibility(false);
   };
 
-  const onClickCategory = () => {
-    setCategoryPopupVisibility(!categoryPopupVisibility);
-  };
-
-  const onCloseCategoryPopup = () => {
-    setCategoryPopupVisibility(false);
-  };
-
   const onClickWatchlist = () => {
     dispatch(setWatchlistFilter(!filterByWatchlist));
   };
@@ -57,10 +46,6 @@ function CryptoButtonsBlock() {
 
     if (!e.path.find((item: any) => item.className === 'filter-block')) {
       setFiltersPopupVisibility(false);
-    }
-
-    if (!e.path.find((item: any) => item.className === 'categories-block-mobile')) {
-      setCategoryPopupVisibility(false);
     }
   };
 
