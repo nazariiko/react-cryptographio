@@ -34,6 +34,7 @@
   justify-content: space-between;
 
   svg {
+    cursor: pointer;
     margin-right: 10px;
   }
 
@@ -52,6 +53,10 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  svg {
+    border-bottom: 1px solid var(--border);
   }
 }
 
@@ -182,7 +187,6 @@
     align-items: center;
     width: 35px;
     height: 20px;
-    background: #57da9b;
     border-radius: 4px;
 
     p {
@@ -193,11 +197,28 @@
     }
   }
 
+  .ex-score-colored.green {
+    background: #57da9b;
+  }
+
+  .ex-score-colored.orange {
+    background: #FFC061;
+  }
+
+  .ex-score-colored.red {
+    background: #FF6161;
+  }
+
   .td-ex-name {
     position: sticky;
+    width: 200px;
     left: 0;
     z-index: 2;
     background: var(--background);
+  }
+
+  .td-ex-name-loading {
+    position: static !important;
   }
 
   .volume-24h {

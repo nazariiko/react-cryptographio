@@ -28,15 +28,16 @@ export const watchlistSlice = createSlice({
     },
 
     addExchangeWatchListItem(state, action: PayloadAction<string>) {
-      state.exchange = JSON.stringify(
-        JSON.parse(state.exchange ? state.exchange : '[]').push(action.payload),
-      );
+      let parsed = JSON.parse(state.exchange ? state.exchange : '[]');
+      parsed.push(action.payload);
+      state.exchange = JSON.stringify(parsed);
+      localStorage.setItem('watchlist-exchange', state.exchange);
     },
 
     removeExchangeWatchListItem(state, action: PayloadAction<string>) {
-      state.exchange = JSON.stringify(
-        JSON.parse(state.exchange as string).filter((item: string) => item !== action.payload),
-      );
+      let parsed = JSON.parse(state.exchange ? state.exchange : '[]');
+      state.exchange = JSON.stringify(parsed.filter((item: string) => item !== action.payload));
+      localStorage.setItem('watchlist-exchange', state.exchange);
     },
   },
 });

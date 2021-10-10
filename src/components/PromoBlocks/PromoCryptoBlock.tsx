@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hooks';
 import { setCurrentPage } from '../../redux/page/pageSlice';
 
+import { useGetCryptocurrenciesQuery } from '../../redux/api/crypto';
+
 import PromoCryptoItem from './PromoCryptoItem';
+import PromoCryptoLoader from '../Loaders/PromoCryptoLoader';
 
 import hotIcon from '../../icons/hot.svg';
 import infoIcon from '../../icons/info.svg';
 
-import bitcoin from '../../icons/crypto/bitcoin.svg';
-import ethereum from '../../icons/crypto/ethereum.svg';
-
 function PromoCryptoBlock() {
   const dispatch = useAppDispatch();
+  const { data, isLoading, isError, isSuccess } = useGetCryptocurrenciesQuery(2);
 
   return (
     <div className="home-promo-block">
@@ -40,89 +41,148 @@ function PromoCryptoBlock() {
       </div>
 
       <div className="home-promo-block-bottom">
-        <table className="home-promo-block-bottom-table">
-          <col className="first-col" />
-          <thead>
-            <tr>
-              <th className="td-crypto-name">
-                <p>Name</p>
-              </th>
-              <th>
-                <p>Price</p>
-              </th>
-              <th>
-                <p>24h%</p>
-              </th>
-              <th>
-                <p>7d%</p>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <img className="info" src={infoIcon} alt="info" />
-                  <div className="th-info-block">
-                    <p>
-                      The total market value of a cryptocurrency's circulating supply. It is
-                      analogous to the free-float capitalization in the stock market. <br />
-                      <br />
-                      Market Cap = Current Price x Circulating Supply.
-                    </p>
+        {isLoading || isError ? (
+          <table className="home-promo-block-bottom-table home-promo-block-bottom-table-loading">
+            <thead>
+              <tr>
+                <th className="td-crypto-name td-crypto-name-loading">
+                  <p>Name</p>
+                </th>
+                <th>
+                  <p>Price</p>
+                </th>
+                <th>
+                  <p>24h%</p>
+                </th>
+                <th>
+                  <p>7d%</p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        The total market value of a cryptocurrency's circulating supply. It is
+                        analogous to the free-float capitalization in the stock market. <br />
+                        <br />
+                        Market Cap = Current Price x Circulating Supply.
+                      </p>
+                    </div>
+                    <p>Market cap</p>
                   </div>
-                  <p>Market cap</p>
-                </div>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <img className="info" src={infoIcon} alt="info" />
-                  <div className="th-info-block">
-                    <p>
-                      A measure of how much of a cryptocurrency was traded in the last 24 hours.
-                    </p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        A measure of how much of a cryptocurrency was traded in the last 24 hours.
+                      </p>
+                    </div>
+                    <p>Volume(24h)</p>
                   </div>
-                  <p>Volume(24h)</p>
-                </div>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <img className="info" src={infoIcon} alt="info" />
-                  <div className="th-info-block">
-                    <p>
-                      The amount of coins that are circulating in the market and are in public
-                      hands. It is analogous to the flowing shares in the stock market.
-                    </p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        The amount of coins that are circulating in the market and are in public
+                        hands. It is analogous to the flowing shares in the stock market.
+                      </p>
+                    </div>
+                    <p>Circulation Supply</p>
                   </div>
-                  <p>Circulation Supply</p>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <PromoCryptoItem
-              name={'Bitcoin'}
-              surname={'BTC'}
-              price={'$43,546.95'}
-              change24H={3.16}
-              change7D={8.71}
-              marketCap={'$830,204,201,427'}
-              volumeInUsd24H={'$37,052,141,879'}
-              volumeInCrypto24H={'840,107 BTC'}
-              circulationInCrypto={'18,823,743 BTC'}
-              logo={bitcoin}
-            />
+                </th>
+              </tr>
+            </thead>
+          </table>
+        ) : (
+          ''
+        )}
+        {isLoading || isError
+          ? Array(2)
+              .fill(0)
+              .map((_, index) => <PromoCryptoLoader key={index} />)
+          : ''}
 
-            <PromoCryptoItem
-              name={'Ethereum'}
-              surname={'ETH'}
-              price={'$3,456.76'}
-              change24H={4.16}
-              change7D={5.71}
-              marketCap={'$367,226,290,423'}
-              volumeInUsd24H={'$21,987,863,047'}
-              volumeInCrypto24H={'7,043,702 ETH'}
-              circulationInCrypto={'117,639,111 ETH'}
-              logo={ethereum}
-            />
-          </tbody>
-        </table>
+        {isSuccess ? (
+          <table className="home-promo-block-bottom-table">
+            <thead>
+              <tr>
+                <th className="td-crypto-name">
+                  <p>Name</p>
+                </th>
+                <th>
+                  <p>Price</p>
+                </th>
+                <th>
+                  <p>24h%</p>
+                </th>
+                <th>
+                  <p>7d%</p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        The total market value of a cryptocurrency's circulating supply. It is
+                        analogous to the free-float capitalization in the stock market. <br />
+                        <br />
+                        Market Cap = Current Price x Circulating Supply.
+                      </p>
+                    </div>
+                    <p>Market cap</p>
+                  </div>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        A measure of how much of a cryptocurrency was traded in the last 24 hours.
+                      </p>
+                    </div>
+                    <p>Volume(24h)</p>
+                  </div>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        The amount of coins that are circulating in the market and are in public
+                        hands. It is analogous to the flowing shares in the stock market.
+                      </p>
+                    </div>
+                    <p>Circulation Supply</p>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((item: any, index: number) => (
+                  <PromoCryptoItem
+                    name={item.name}
+                    surname={item.id}
+                    price={item.price}
+                    change24H={item['1d']?.['price_change_pct']}
+                    change7D={item['7d']?.['price_change_pct']}
+                    marketCap={item['market_cap']}
+                    volumeInUsd24H={item['1d']?.['volume']}
+                    volumeInCrypto24H={item['1d']?.['volume_change_pct']}
+                    circulationInCrypto={item['circulating_supply']}
+                    logo={item['logo_url']}
+                    key={index}
+                  />
+                ))}
+            </tbody>
+          </table>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

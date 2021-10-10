@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const LoaderBlock = () => (
+const CryptoLoader = () => (
   <ContentLoader
     speed={2}
     width={1100}
@@ -22,4 +22,4 @@ const LoaderBlock = () => (
   </ContentLoader>
 );
 
-export default LoaderBlock;
+export default CryptoLoader;

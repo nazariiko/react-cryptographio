@@ -94,20 +94,6 @@ function CryptoButtonsBlock() {
       </div>
 
       <div className="filters">
-        <div className="categories-block-mobile">
-          <CategoryOptionButton
-            text={'Crypto'}
-            onClick={onClickCategory}
-            icon={sortByPrimaryIcon}
-            className="ml-20"
-          />
-          {categoryPopupVisibility && (
-            <CategoryPopup
-              categoryOptions={['Crypto', 'DeFi', 'NFT', 'Polkadot']}
-              onClose={onCloseCategoryPopup}
-            />
-          )}
-        </div>
         <div className="filter-block">
           <OptionButton
             text={'Filters'}

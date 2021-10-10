@@ -2,7 +2,7 @@ import React from 'react';
 
 import CryptocurrenciesItem from './CryptocurrenciesItem';
 import infoIcon from '../../icons/info.svg';
-import LoaderBlock from '../Loaders/LoaderBlock';
+import CryptoLoader from '../Loaders/CryptoLoader';
 
 import { useAppSelector } from '../../app/hooks';
 import { usePrevious } from '../../hooks/usePrevious';
@@ -118,7 +118,7 @@ function CryptocurrenciesTable() {
         {Array(10)
           .fill(0)
           .map((_, index) => (
-            <LoaderBlock key={index} />
+            <CryptoLoader key={index} />
           ))}
       </div>
     );

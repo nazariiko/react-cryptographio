@@ -43,7 +43,6 @@ function CryptocurrenciesItem({
   volumeInCrypto24H,
   circulationInCrypto,
   logo,
-  isWatchlist,
 }: CryptocurrenciesItemProps) {
   const dispatch = useAppDispatch();
   const cryptoWatchlist = useAppSelector((state) => state.watchlist.crypto);

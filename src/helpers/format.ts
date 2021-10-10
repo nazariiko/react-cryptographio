@@ -17,7 +17,6 @@ export const formatPrice = (price: string | undefined) => {
   return `$${arr.reverse().join('')}.${float}`;
 };
 
-
 export const formatMarketCap = (marketCap: string | undefined) => {
   let count = 0;
   let arr = (marketCap as string).toString().split('').reverse();
@@ -33,8 +32,7 @@ export const formatMarketCap = (marketCap: string | undefined) => {
   }
 
   return `$${arr.reverse().join('')}`;
-}
-
+};
 
 export const formatVolumeInUsd24H = (volumeInUsd24H: string | undefined) => {
   let count = 0;
@@ -55,14 +53,13 @@ export const formatVolumeInUsd24H = (volumeInUsd24H: string | undefined) => {
   return `$${arr.reverse().join('')}`;
 };
 
-
 export const formatChange = (change: string) => {
   let percent: string;
   if ((change as string)[0] === '-') {
     percent = (Number(change.slice(1)) * 100).toFixed(2) + '%';
-    return [percent, 'red']
+    return [percent, 'red'];
   } else {
     percent = (Number(change) * 100).toFixed(2) + '%';
-    return [percent, 'green']
+    return [percent, 'green'];
   }
-}
+};

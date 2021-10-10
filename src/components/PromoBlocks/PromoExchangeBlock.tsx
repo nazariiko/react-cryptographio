@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../app/hooks';
 import { setCurrentPage } from '../../redux/page/pageSlice';
+import { useGetExchangesQuery } from '../../redux/api/crypto';
 
 import PromoExchangeItem from './PromoExchangeItem';
+import PromoExchangeLoader from '../Loaders/PromoExchangeLoader';
 
 import exchangeIcon from '../../icons/exchange.svg';
 import infoIcon from '../../icons/info.svg';
 
-import binance from '../../icons/exchanges/binance.svg';
-import coinbase from '../../icons/exchanges/coinbase.svg';
-
 function PromoExchangeBlock() {
   const dispatch = useAppDispatch();
+  const { data, isLoading, isError, isSuccess } = useGetExchangesQuery(2);
 
   return (
     <div className="home-promo-block">
@@ -40,82 +40,111 @@ function PromoExchangeBlock() {
       </div>
 
       <div className="home-promo-block-bottom">
-        <table className="home-promo-block-bottom-table">
-          <col className="first-col" />
-          <thead>
-            <tr>
-              <th className="td-crypto-name">
-                <p>Name</p>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <img className="info" src={infoIcon} alt="info" />
-                  <div className="th-info-block">
-                    <p>
-                      CoinMarketCap ranks and scores exchanges based on the following: Web Traffic
-                      Factor; Average Liquidity; Volume, as well as the Confidence that the volume
-                      reported by an exchange is legitimate. Weights are assigned to the
-                      above-mentioned factors and a score from 0.0 to 10.0 is given to the Spot
-                      Exchange.
-                    </p>
+        {isLoading || isError ? (
+          <table className="home-promo-block-bottom-table">
+            <thead>
+              <tr>
+                <th className="td-crypto-name td-crypto-name-loading">
+                  <p>Name</p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        CoinMarketCap ranks and scores exchanges based on the following: Web Traffic
+                        Factor; Average Liquidity; Volume, as well as the Confidence that the volume
+                        reported by an exchange is legitimate. Weights are assigned to the
+                        above-mentioned factors and a score from 0.0 to 10.0 is given to the Spot
+                        Exchange.
+                      </p>
+                    </div>
+                    <p>Exchange score</p>
                   </div>
-                  <p>Exchange score</p>
-                </div>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <p>Volume(24h)</p>
-                </div>
-              </th>
-              <th>
-                <p>Avg.Liquidity</p>
-              </th>
-              <th>
-                <div className="th-with-info">
-                  <img className="info" src={infoIcon} alt="info" />
-                  <div className="th-info-block">
-                    <p>
-                      Weekly visits to website (not including mobile app) based on data from
-                      SimilarWeb.
-                    </p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <p>Volume BTC(24h)</p>
                   </div>
-                  <p>Weekly visits</p>
-                </div>
-              </th>
-              <th>
-                <p>Markets</p>
-              </th>
-              <th>
-                <p>Coins</p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <PromoExchangeItem
-              name={'Binance'}
-              score={'9.9'}
-              volumeInUsd24H={'$4,511,754,954'}
-              volumeInPercent24H={8.71}
-              avgLiquidity={684}
-              weeklyVisits={'28,351,152'}
-              markets={1419}
-              coins={385}
-              logo={binance}
-            />
+                </th>
+                <th>
+                  <p>Year established</p>
+                </th>
+                <th>
+                  <p>Markets</p>
+                </th>
+                <th>
+                  <p>Coins</p>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        ) : (
+          ''
+        )}
+        {isLoading || isError
+          ? Array(2)
+              .fill(0)
+              .map((_, index) => <PromoExchangeLoader key={index} />)
+          : ''}
 
-            <PromoExchangeItem
-              name={'Coinbase Exchange'}
-              score={'9.0'}
-              volumeInUsd24H={'$25,035,576,545'}
-              volumeInPercent24H={35.1}
-              avgLiquidity={574}
-              weeklyVisits={'2,901,407'}
-              markets={312}
-              coins={104}
-              logo={coinbase}
-            />
-          </tbody>
-        </table>
+        {isSuccess ? (
+          <table className="home-promo-block-bottom-table">
+            <thead>
+              <tr>
+                <th className="td-crypto-name">
+                  <p>Name</p>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <img className="info" src={infoIcon} alt="info" />
+                    <div className="th-info-block">
+                      <p>
+                        CoinMarketCap ranks and scores exchanges based on the following: Web Traffic
+                        Factor; Average Liquidity; Volume, as well as the Confidence that the volume
+                        reported by an exchange is legitimate. Weights are assigned to the
+                        above-mentioned factors and a score from 0.0 to 10.0 is given to the Spot
+                        Exchange.
+                      </p>
+                    </div>
+                    <p>Exchange score</p>
+                  </div>
+                </th>
+                <th>
+                  <div className="th-with-info">
+                    <p>Volume BTC(24h)</p>
+                  </div>
+                </th>
+                <th>
+                  <p>Year established</p>
+                </th>
+                <th>
+                  <p>Markets</p>
+                </th>
+                <th>
+                  <p>Coins</p>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data &&
+                data.map((item: any, index: number) => (
+                  <PromoExchangeItem
+                    name={item.name}
+                    score={item.trust_score}
+                    volumeInBtc24H={item.trade_volume_24h_btc}
+                    year_established={item.year_established}
+                    markets={Math.floor(Math.random() * 1000)}
+                    coins={Math.floor(Math.random() * 3000)}
+                    logo={item.image}
+                    key={index}
+                  />
+                ))}
+            </tbody>
+          </table>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

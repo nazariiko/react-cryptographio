@@ -75,6 +75,7 @@
   border-spacing: 0;
   table-layout: fixed;
 
+
   thead {
     tr {
       th {
@@ -197,10 +198,15 @@
   }
 
   .td-crypto-name {
+    width: 150px;
     position: sticky;
     left: 0;
     z-index: 2;
     background: var(--background-block);
+  }
+
+  .td-crypto-name-loading {
+    position: static !important;
   }
 
   .change-24h {

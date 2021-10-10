@@ -3,35 +3,28 @@ import React from 'react';
 type PromoExchangeItemProps = {
   name: string;
   score: string;
-  volumeInUsd24H: string;
-  volumeInPercent24H: number;
-  avgLiquidity: number;
-  weeklyVisits: string;
+  volumeInBtc24H: string;
+  year_established: string;
   markets: number;
   coins: number;
   logo: string;
 };
 
-
 function PromoExchangeItem({
   name,
   score,
-  volumeInUsd24H,
-  volumeInPercent24H,
-  avgLiquidity,
-  weeklyVisits,
+  volumeInBtc24H,
+  year_established,
   markets,
   coins,
-  logo
+  logo,
 }: PromoExchangeItemProps) {
   return (
     <tr>
       <td className="td-crypto-name">
         <div className="td-crypto-name-block">
-          <img className="crypto-logo" src={logo} alt="bitcoin" />
-          <p>
-            {name}
-          </p>
+          <img className="crypto-logo" width={20} src={logo} alt="bitcoin" />
+          <p>{name}</p>
         </div>
       </td>
       <td>
@@ -40,16 +33,10 @@ function PromoExchangeItem({
         </div>
       </td>
       <td>
-        <div className="volume-24h">
-          <p>{volumeInUsd24H}</p>
-          <span style={{color: "var(--red)"}}>{volumeInPercent24H}%</span>
-        </div>
+        <p>{volumeInBtc24H && Number(volumeInBtc24H).toFixed(2)}</p>
       </td>
       <td>
-        <p>{avgLiquidity}</p>
-      </td>
-      <td>
-        <p>{weeklyVisits}</p>
+        <p>{year_established}</p>
       </td>
       <td>
         <p>{markets}</p>
