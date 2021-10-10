@@ -4,8 +4,8 @@ const URL_1 = 'https://api.nomics.com/v1/';
 const URL_2 = 'https://api.coingecko.com/api/v3/';
 const URL_3 = 'https://pro-api.coinmarketcap.com/v1/';
 const API_KEY_NOMICS = [
-  process.env.REACT_APP_NOMICS_API_KEY_1,
-  process.env.REACT_APP_NOMICS_API_KEY_2,
+  process.env.REACT_APP_API_KEY_NOMICS_1,
+  process.env.REACT_APP_API_KEY_NOMICS_2,
 ];
 const API_KEY_MARKETCAP = process.env.REACT_APP_API_KEY_MARKETCAP;
 const PREFIX = 'https://aqueous-falls-61535.herokuapp.com/';
