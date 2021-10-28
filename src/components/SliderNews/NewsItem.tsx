@@ -18,4 +18,4 @@ function NewsItem({ category, text, image }: NewsItemProps) {
   );
 }
 
-export default NewsItem;
+export default React.memo(NewsItem);

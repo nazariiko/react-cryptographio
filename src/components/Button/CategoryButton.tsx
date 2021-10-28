@@ -19,4 +19,4 @@ function CategoryButton({ text, className, onClick, active }: CategoryButtonProp
   );
 }
 
-export default CategoryButton;
+export default React.memo(CategoryButton);

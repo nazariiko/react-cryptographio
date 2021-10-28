@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { OptionButton, CategoryButton } from '../../components/Button';
+import { OptionButton } from '../../components/Button';
 import { SortPopup } from '../../components/SortPopup';
 import { FiltersPopup } from '../../components/FiltersPopup';
 
@@ -17,27 +17,26 @@ function CryptoButtonsBlock() {
   const filterByWatchlist = useAppSelector((state) => state.filter.filterByWatchlist);
   const [filtersPopupVisibility, setFiltersPopupVisibility] = React.useState(false);
   const [sortPopupVisibility, setSortPopupVisibility] = React.useState(false);
-  const onClick1 = () => {};
 
-  const onClickFilters = () => {
+  const onClickFilters = React.useCallback(() => {
     setFiltersPopupVisibility(!filtersPopupVisibility);
-  };
+  }, []);
 
-  const onCloseFilters = () => {
+  const onCloseFilters = React.useCallback(() => {
     setFiltersPopupVisibility(false);
-  };
+  }, []);
 
-  const onClickSort = () => {
+  const onClickSort = React.useCallback(() => {
     setSortPopupVisibility(!sortPopupVisibility);
-  };
+  }, []);
 
-  const onCloseSortPopup = () => {
+  const onCloseSortPopup = React.useCallback(() => {
     setSortPopupVisibility(false);
-  };
+  }, []);
 
-  const onClickWatchlist = () => {
+  const onClickWatchlist = React.useCallback(() => {
     dispatch(setWatchlistFilter(!filterByWatchlist));
-  };
+  }, [filterByWatchlist]);
 
   const onClickOutside = (e: any) => {
     if (!e.path.find((item: any) => item.className === 'sort')) {
@@ -70,12 +69,6 @@ function CryptoButtonsBlock() {
             />
           )}
         </div>
-      </div>
-      <div className="categories-btns-desktop">
-        <CategoryButton text={'Cryptocurrencies'} onClick={onClick1} active className="ml-20" />
-        <CategoryButton text={'DeFi'} onClick={onClick1} />
-        <CategoryButton text={'NFT'} onClick={onClick1} />
-        <CategoryButton text={'Polkadot'} onClick={onClick1} />
       </div>
 
       <div className="filters">

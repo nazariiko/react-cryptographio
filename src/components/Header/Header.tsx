@@ -83,7 +83,7 @@ function Header() {
               onChange={(e) => setSearch(e.target.value)}
               onKeyPress={handleSearchEnter}
               type="text"
-              placeholder="Search"
+              placeholder="Search crypto"
               value={search}
             />
             <svg

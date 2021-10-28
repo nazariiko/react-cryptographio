@@ -17,4 +17,4 @@ function OptionButton({ text, icon, className, onClick }: OptionButtonProps) {
   );
 }
 
-export default OptionButton;
+export default React.memo(OptionButton);
