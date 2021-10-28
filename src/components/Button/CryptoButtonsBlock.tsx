@@ -20,6 +20,7 @@ function CryptoButtonsBlock() {
 
   const onClickFilters = React.useCallback(() => {
     setFiltersPopupVisibility(!filtersPopupVisibility);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCloseFilters = React.useCallback(() => {
@@ -28,6 +29,7 @@ function CryptoButtonsBlock() {
 
   const onClickSort = React.useCallback(() => {
     setSortPopupVisibility(!sortPopupVisibility);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCloseSortPopup = React.useCallback(() => {
@@ -36,6 +38,7 @@ function CryptoButtonsBlock() {
 
   const onClickWatchlist = React.useCallback(() => {
     dispatch(setWatchlistFilter(!filterByWatchlist));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterByWatchlist]);
 
   const onClickOutside = (e: any) => {
